@@ -62,17 +62,13 @@ a:hover { color: #2456a6; text-decoration: underline; }
 .provisional { margin: .8rem 0 0; color: #999; font-size: .78rem; }
 
 .teaser { padding: .75rem 0 2.6rem; }
-.video-placeholder, video {
+video {
   width: 100%;
   aspect-ratio: 16 / 9;
   border: 1px solid #e1e4e8;
   border-radius: 6px;
-  background: #eceff2;
+  background: #000;
 }
-.video-placeholder { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .45rem; color: #787f88; text-align: center; }
-.video-placeholder strong { color: #444b53; font-size: 1.05rem; }
-.video-placeholder small { padding: 0 1rem; font-size: .82rem; }
-.play-icon { width: 56px; height: 56px; display: grid; place-items: center; border: 2px solid #7d858e; border-radius: 50%; font-size: 1.35rem; text-indent: .15rem; }
 .teaser h2 { max-width: 820px; margin: 1rem auto 0; text-align: center; font-size: 1.2rem; font-weight: 500; line-height: 1.45; }
 
 .section { padding: 2.8rem 0; }

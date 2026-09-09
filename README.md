@@ -24,11 +24,23 @@ cd ~/Projects/tossing-results && ./run -m analysis.stats
 
 ## Still missing
 
-- The project video (`static/videos/hero.mp4` + the commented `<video>` block in
-  the teaser). The reel is ~35 MB; if it grows much past that, embed YouTube
-  instead of committing the file.
 - Figures in `static/images/`.
 - Links to the thesis PDF and to the code, once either is public.
+
+## The video
+
+`static/videos/reel.mp4` is the English reel, transcoded for the web from
+`outputs/video/reel.en.mp4` in `~/Projects/tossing-results` (35 MB -> 11 MB):
+
+```bash
+ffmpeg -i reel.en.mp4 -c:v libx264 -preset slow -crf 26 -pix_fmt yuv420p \
+       -c:a aac -b:a 96k -ac 1 -movflags +faststart static/videos/reel.mp4
+```
+
+`+faststart` matters: without it the browser has to fetch the whole file before
+it can start playing. It has narration, so it plays with controls and sound and
+does not autoplay. If a future cut goes much past ~25 MB, host it on YouTube and
+embed it instead of committing the file.
 
 ## Publish (GitHub Pages)
 
