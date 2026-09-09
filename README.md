@@ -74,6 +74,31 @@ whoever wants to read opens the file.
 
 It is a draft in Spanish, and the page says so.
 
+## Institutional identity
+
+The page follows the Cinvestav graphic identity manual (Departamento de Difusion,
+2022). What it constrains here:
+
+- **The name.** Only three forms are permitted, and the manual says so in those
+  words: "Ninguna otra variacion del nombre es permitida". They are `Cinvestav`,
+  `Centro de Investigacion y de Estudios Avanzados del Instituto Politecnico
+  Nacional`, and `Center for Research and Advanced Studies`. The English form
+  stops at *Studies* -- the polytechnic tail exists only in Spanish, and never
+  abbreviated to IPN. The acronym is never set in capitals. Credits run
+  dependency, centre, postal address, and the unit is written `Campus Saltillo`.
+- **The mark.** `static/images/logo-cinvestav-saltillo.png` is SAL5 from the
+  official Saltillo pack that Difusion publishes at
+  <https://difusion.cinvestav.mx/Funciones/Identidad-grafica>. It must not be
+  redrawn, recoloured or recreated. The bare symbol without the word Cinvestav
+  is ornamental only and may not stand in for the logosimbolo.
+- **The palette.** `--link` is Pantone 7693 C (#005179) and `--marca` is the
+  Centre's own Pantone 3285 C (#009383). The blue the template shipped with,
+  #3273dc, was Bulma's and is not in the palette. #387FC2 is the colour the
+  manual assigns to Saltillo for web headers.
+- **The type.** Gotham for titles and Calibri for documents. Both are licensed
+  and cannot be served from a web page, so the stack asks for them by name, then
+  Carlito (metrically compatible with Calibri), then the system font.
+
 ## Publish (GitHub Pages)
 
 Already a git repo. To put it online:

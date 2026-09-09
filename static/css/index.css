@@ -1,6 +1,12 @@
 :root {
   color-scheme: light;
-  --link: #3273dc;
+  /* Paleta del manual de identidad grafica del Cinvestav (§3). El azul que
+     traia la plantilla era el de Bulma, #3273dc, que no esta en la paleta.
+     --link es el secundario (Pantone 7693 C) y --marca el oficial del Centro
+     (Pantone 3285 C), que se reserva para el hover y para los filetes. */
+  --link: #005179;
+  --marca: #009383;
+  --unidad: #387FC2;      /* el color que §5.1 asigna a Saltillo */
   --text: #222;
   --muted: #666;
   --line: #dbdbdb;
@@ -13,12 +19,16 @@ body {
   margin: 0;
   color: var(--text);
   background: #fff;
-  font-family: "Noto Sans", Arial, sans-serif;
+  /* §4 pide Calibri para todo documento del Centro y Gotham para titulos. Las
+     dos son de licencia y no se pueden servir en una web, asi que se piden por
+     nombre -- las tiene quien las tenga instaladas -- con Carlito, que es
+     metricamente compatible con Calibri, y de ahi hacia abajo la del sistema. */
+  font-family: Calibri, Carlito, "Segoe UI", system-ui, "Noto Sans", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
 a { color: var(--link); text-decoration: none; }
-a:hover { color: #2456a6; text-decoration: underline; }
+a:hover { color: var(--marca); text-decoration: underline; }
 .container { width: min(calc(100% - 40px), 800px); margin: 0 auto; }
 .container.wide { width: min(calc(100% - 40px), 960px); }
 
@@ -38,7 +48,9 @@ a:hover { color: #2456a6; text-decoration: underline; }
 /* El escudo va entre la adscripcion y los botones: acompana al nombre de la
    institucion, que es lo que dice, en vez de flotar suelto en una esquina. */
 .logos { margin-top: 1.15rem; display: flex; justify-content: center; align-items: center; gap: 1.6rem; }
-.logos img { height: 62px; width: auto; }
+/* Version vertical, la que §2 llama principal. 68 px de alto son 62 px de
+   ancho, muy por encima de los 25 px minimos de §1.3. */
+.logos img { height: 68px; width: auto; }
 
 .publication-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem; margin-top: 1.3rem; }
 .button {
@@ -82,7 +94,7 @@ video {
 .method-overview { margin: .5rem 0 1rem; display: flex; justify-content: center; align-items: flex-start; gap: 1rem; }
 .method-step { width: 205px; display: flex; flex-direction: column; text-align: center; }
 .figure-box { height: 118px; margin-bottom: .65rem; display: grid; place-items: center; border: 1px solid #cfd3d7; border-radius: 4px; background: #fff; color: #42484f; font-weight: 600; line-height: 1.5; }
-.figure-box.highlighted { background: #eef4fc; border-color: #b8ccea; }
+.figure-box.highlighted { background: #e6f4f2; border-color: #7fc9c1; }
 .method-step b { color: #333; font-size: .84rem; }
 .method-step span { margin-top: .2rem; color: #6d737a; font-size: .84rem; line-height: 1.4; }
 .arrow { margin-top: 42px; color: #888; font-size: 1.6rem; }
@@ -143,3 +155,5 @@ footer { padding: 2.5rem 0; background: #fafafa; color: #777; font-size: .82rem;
   .documento { flex-direction: column; gap: 1.2rem; }
   .documento .portada { flex: 0 0 auto; max-width: 260px; align-self: center; }
 }
+
+.filete-unidad { height: 4px; background: var(--unidad); }
