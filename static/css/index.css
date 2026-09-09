@@ -44,6 +44,7 @@ a:hover { color: #2456a6; text-decoration: underline; }
   padding: .38rem .86rem;
   display: inline-flex;
   align-items: center;
+  gap: .5rem;
   border-radius: 999px;
   background: #363636;
   color: #fff;
@@ -55,7 +56,7 @@ a:hover { color: #2456a6; text-decoration: underline; }
    clase. */
 .button.pendiente { background: #e8eaed; color: #8b9098; cursor: default; }
 
-.button i { margin-right: .5rem; font-size: .92em; }
+.button i { font-size: .92em; }
 
 .button:hover { color: #fff; background: #222; text-decoration: none; }
 .provisional { margin: .8rem 0 0; color: #999; font-size: .78rem; }
