@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Grasping and tossing of rigid objects with a Sawyer robot">
+  <title>Grasping and Tossing of Rigid Objects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+  <main>
+    <section class="publication-header">
+      <div class="container">
+        <h1>Grasping and Tossing of<br class="desktop-break"> Rigid Objects</h1>
+
+        <div class="authors">
+          <span>José Fausto Gómez Cordero,</span>
+          <span>Gustavo Arechavaleta Servín,</span>
+          <span>Keny Ordaz Hernández</span>
+        </div>
+
+        <div class="affiliation">
+          Center for Research and Advanced Studies of the National Polytechnic Institute<br>
+          CINVESTAV, Saltillo Campus &middot; Robotics and Advanced Manufacturing
+        </div>
+
+        <div class="publication-links">
+          <a class="button" href="#results" aria-label="Results">▣&nbsp; Results</a>
+          <a class="button" href="#video" aria-label="Project video">▶&nbsp; Video</a>
+          <a class="button" href="#bibtex" aria-label="BibTeX citation">❞&nbsp; BibTeX</a>
+        </div>
+        <p class="provisional">Work in progress. The thesis, the video and the code are not published yet;
+          the numbers below are the frozen evaluation of August&nbsp;30, 2026.</p>
+      </div>
+    </section>
+
+    <section class="teaser" id="video">
+      <div class="container wide">
+        <!-- Cuando el reel este cerrado, esto se cambia por:
+        <video autoplay controls muted loop playsinline>
+          <source src="static/videos/hero.mp4" type="video/mp4">
+        </video>
+        El reel pesa ~35 MB, asi que si crece se sube a YouTube y se incrusta. -->
+        <div class="video-placeholder" role="img" aria-label="Placeholder for the project video">
+          <span class="play-icon">▶</span>
+          <strong>Project video</strong>
+          <small>Coming soon</small>
+        </div>
+        <h2>A 7-DoF Sawyer robot picks a rigid part and throws it into a target bin
+          outside the reach of its arm.</h2>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content">
+        <h2>Overview</h2>
+        <p class="abstract">
+          Tossing extends the reach of a manipulator beyond its workspace, but it moves the
+          difficulty into a release that lasts a few milliseconds. We study grasping and
+          tossing of rigid parts with a 7-DoF Sawyer robot: the arm picks a part from a
+          cluttered tray and throws it into one of twelve bins of a grid placed outside its
+          reach. The gripper leaves only a few millimetres of clearance around the part, so a
+          throw begins with a grasp that has to be repeatable, and the commanded release
+          velocity is not the one the arm actually executes. We evaluate the complete task on
+          the real robot over 834 attempts, on the four object families used during training
+          and on four families the policy had not seen within the same domain.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alternate">
+      <div class="container content">
+        <h2>The task</h2>
+        <div class="method-overview">
+          <div class="method-step">
+            <div class="figure-box">Grasp<br>selection</div>
+            <b>1. Pick</b>
+            <span>Choose a grasp on a part lying in the tray.</span>
+          </div>
+          <div class="arrow">→</div>
+          <div class="method-step">
+            <div class="figure-box highlighted">Release</div>
+            <b>2. Toss</b>
+            <span>Throw toward the bin selected as the target.</span>
+          </div>
+          <div class="arrow">→</div>
+          <div class="method-step">
+            <div class="figure-box">Landing<br>bin</div>
+            <b>3. Outcome</b>
+            <span>The attempt counts only if the part lands in that bin.</span>
+          </div>
+        </div>
+        <p class="caption">An attempt is scored end to end: a throw that lands in a neighbouring
+          bin is a miss, and a part that is never grasped never reaches the throw.</p>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container content">
+        <h2>Real-robot evaluation</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Split</th><th>Attempts</th><th>Grasp</th><th>Toss after grasp</th><th>End to end</th></tr>
+            </thead>
+            <!-- NUMEROS: generado por sync/page_numbers.py desde analysis/stats.py. No teclear a mano. -->
+            <tbody id="results-body">
+              <tr><td>Seen families (bar, L, T, I)</td><td>402</td><td>99.50 %<br><small>98.2&ndash;99.9</small></td><td>79.25 %<br><small>75.0&ndash;82.9</small></td><td>78.86 %<br><small>74.6&ndash;82.6</small></td></tr>
+              <tr><td>Unseen families (C, S, cross, V)</td><td>432</td><td>92.59 %<br><small>89.7&ndash;94.7</small></td><td>74.50 %<br><small>70.0&ndash;78.5</small></td><td>68.98 %<br><small>64.5&ndash;73.2</small></td></tr>
+            </tbody>
+            <!-- FIN NUMEROS -->
+          </table>
+        </div>
+        <p class="caption">Frozen evaluation of August 30, 2026. Percentages are exact-bin
+          success; Wilson 95 % intervals are recomputed from the counts, never transcribed.
+          Unseen families are geometries held out within the same evaluated domain, not
+          arbitrary objects.</p>
+      </div>
+    </section>
+
+    <section class="section alternate" id="bibtex">
+      <div class="container content">
+        <h2>BibTeX</h2>
+        <div class="bibtex-box">
+          <button id="copy-bibtex" type="button">Copy</button>
+          <pre><code id="bibtex-code">@mastersthesis{gomezcordero2026tossing,
+  title  = {Grasping and tossing of rigid objects},
+  author = {G{\'o}mez Cordero, Jos{\'e} Fausto},
+  school = {Centro de Investigaci{\'o}n y de Estudios Avanzados del IPN,
+            Unidad Saltillo},
+  year   = {2026},
+  note   = {In preparation}
+}</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container content">
+      This website follows the
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>,
+      adapted from the <a href="https://nerfies.github.io/">Nerfies</a> project page.
+    </div>
+  </footer>
+
+  <script src="static/js/index.js"></script>
+</body>
+</html>
