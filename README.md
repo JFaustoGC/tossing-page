@@ -12,17 +12,15 @@ adapted from the [Nerfies](https://nerfies.github.io/) page.
 python3 -m http.server 8000   # http://localhost:8000
 ```
 
-## The numbers are not typed here
+## The numbers
 
-The evaluation table between the `NUMEROS` markers in `index.html` is generated,
-like the thesis tables, from `analysis/stats.py` in `~/Projects/tossing-results`:
+The evaluation table is written out in `index.html`. It comes from the frozen
+bundle `data/eval_20260830` in `~/Projects/tossing-results`, which is not going to
+change; if it ever does, print the current values and edit the two rows by hand:
 
 ```bash
-cd ~/Projects/tossing-results
-./run -m sync.page_numbers        # rewrites only what is between the markers
+cd ~/Projects/tossing-results && ./run -m analysis.stats
 ```
-
-Editing those two rows by hand is how the page and the thesis end up disagreeing.
 
 ## Still missing
 
