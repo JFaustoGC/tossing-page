@@ -33,6 +33,8 @@ a:hover { color: #2456a6; text-decoration: underline; }
 .authors { margin-bottom: .65rem; font-size: 1.18rem; line-height: 1.8; }
 .authors span { display: inline-block; margin: 0 .1rem; }
 .affiliation { color: #555; font-size: .98rem; line-height: 1.55; }
+.affiliation a { color: inherit; text-decoration: underline; text-decoration-color: #bbb; text-underline-offset: 2px; }
+.affiliation a:hover { color: var(--link); text-decoration-color: currentColor; }
 /* El escudo va entre la adscripcion y los botones: acompana al nombre de la
    institucion, que es lo que dice, en vez de flotar suelto en una esquina. */
 .logos { margin-top: 1.15rem; display: flex; justify-content: center; align-items: center; gap: 1.6rem; }
