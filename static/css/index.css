@@ -121,3 +121,25 @@ footer { padding: 2.5rem 0; background: #fafafa; color: #777; font-size: .82rem;
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* El capitulo, a la manera de las paginas de proyecto: la primera pagina como
+   miniatura y la ficha al lado. Un visor de PDF embebido metia un scroll dentro
+   de otro y ademas cada navegador lo pinta a su manera; una imagen se ve igual
+   en todos y el que quiera leer abre el archivo. */
+.documento { display: flex; gap: 1.8rem; align-items: flex-start; margin-top: 1.2rem; }
+.documento .portada { flex: 0 0 268px; line-height: 0; display: block;
+  border: 1px solid #e1e4e8; border-radius: 4px; overflow: hidden;
+  box-shadow: 0 2px 10px rgba(16, 22, 26, .10);
+  transition: box-shadow .18s ease, transform .18s ease; }
+.documento .portada:hover { box-shadow: 0 6px 22px rgba(16, 22, 26, .18);
+  transform: translateY(-2px); }
+.documento .portada img { width: 100%; height: auto; display: block; }
+.documento .ficha { flex: 1 1 auto; min-width: 0; }
+.documento .ficha h3 { margin: 0 0 .3rem; font-size: 1.12rem; }
+.documento .ficha .meta { margin: 0 0 .9rem; font-size: .84rem; color: #6b7280; }
+.acciones { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.2rem 0 0; }
+
+@media (max-width: 640px) {
+  .documento { flex-direction: column; gap: 1.2rem; }
+  .documento .portada { flex: 0 0 auto; max-width: 260px; align-self: center; }
+}
