@@ -64,7 +64,7 @@ a:hover { color: var(--marca); text-decoration: underline; }
   color: #fff;
   font-size: .92rem;
 }
-/* Paper y Code existen pero todavia no llevan a ningun sitio. Un boton apagado
+/* Code todavia no lleva a ningun sitio. Un boton apagado
    dice "esto va a estar"; un boton normal con href="#" solo frustra al que lo
    pulsa. Cuando haya URL, se cambian los <span> por <a href> y se quita la
    clase. */
@@ -73,6 +73,8 @@ a:hover { color: var(--marca); text-decoration: underline; }
 .button i { font-size: .92em; }
 
 .button:hover { color: #fff; background: #222; text-decoration: none; }
+.button.primary { background: var(--link); }
+.button.primary:hover { background: var(--marca); }
 .provisional { margin: .8rem 0 0; color: #999; font-size: .78rem; }
 
 .teaser { padding: .75rem 0 2.6rem; }
@@ -134,11 +136,12 @@ footer { padding: 2.5rem 0; background: #fafafa; color: #777; font-size: .82rem;
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* El capitulo, a la manera de las paginas de proyecto: la primera pagina como
+/* Los documentos, a la manera de las paginas de proyecto: la primera pagina como
    miniatura y la ficha al lado. Un visor de PDF embebido metia un scroll dentro
    de otro y ademas cada navegador lo pinta a su manera; una imagen se ve igual
    en todos y el que quiera leer abre el archivo. */
 .documento { display: flex; gap: 1.8rem; align-items: flex-start; margin-top: 1.2rem; }
+.documento + .documento { margin-top: 2.8rem; }
 .documento .portada { flex: 0 0 268px; line-height: 0; display: block;
   border: 1px solid #e1e4e8; border-radius: 4px; overflow: hidden;
   box-shadow: 0 2px 10px rgba(16, 22, 26, .10);

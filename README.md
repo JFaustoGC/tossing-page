@@ -25,7 +25,7 @@ cd ~/Projects/tossing-results && ./run -m analysis.stats
 ## Still missing
 
 - Figures in `static/images/`.
-- Links to the thesis PDF and to the code, once either is public.
+- Link to the code, once it is public.
 
 ## The video
 
@@ -54,7 +54,33 @@ it can start playing. It has narration, so it plays with controls and sound and
 does not autoplay. If a future cut goes much past ~25 MB, host it on YouTube and
 embed it instead of committing the file.
 
-## The results chapter
+## The paper and thesis
+
+The page offers the paper first, clearly marked as a draft, followed by the full
+Spanish thesis. Both have first-page previews and separate read/download links.
+
+Published PDF snapshots come from `~/Projects/tossing-results`:
+
+- `documents/paper/root.pdf` → `static/pdfs/paper-draft.pdf` (English, 6 pages).
+- `documents/tesis/Tesis.pdf` → `static/pdfs/thesis.pdf` (Spanish, 96 pages).
+
+To refresh the downloads from this repository:
+
+```bash
+cp ../tossing-results/documents/paper/root.pdf static/pdfs/paper-draft.pdf
+cp ../tossing-results/documents/tesis/Tesis.pdf static/pdfs/thesis.pdf
+pdftoppm -f 1 -l 1 -scale-to-x 620 -scale-to-y -1 -singlefile -jpeg \
+  -jpegopt quality=88 static/pdfs/paper-draft.pdf static/images/paper-cover
+pdftoppm -f 1 -l 1 -scale-to-x 620 -scale-to-y -1 -singlefile -jpeg \
+  -jpegopt quality=88 static/pdfs/thesis.pdf static/images/thesis-cover
+```
+
+Update the page counts and file sizes in `index.html` when replacing either PDF.
+
+## Archived results excerpt
+
+The original excerpt remains available at its existing URL; the page now links
+to the complete documents instead.
 
 `static/pdfs/chapter4-results.pdf` is chapter 4 of the thesis, pulled out of the
 built `Tesis.pdf` in `~/Projects/tesis-tossing`. Chapter 4 is printed pages
