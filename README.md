@@ -1,142 +1,92 @@
-# Project page — Grasping and tossing of rigid objects
+# Learning to grasp for robotic tossing
 
-Static page for the thesis work: no build step, no framework. `index.html`, one
-stylesheet, one script.
+Static research page for the current paper and Spanish thesis. Hosted at
+https://jfaustogc.github.io/tossing-page/ through GitHub Pages (`main`, repository root).
+No framework, build step, external font service, or JavaScript dependency is required.
 
-Visual structure from the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template),
-adapted from the [Nerfies](https://nerfies.github.io/) page.
-
-## Preview locally
+## Preview
 
 ```bash
-python3 -m http.server 8000   # http://localhost:8000
+python3 -m http.server 8000
 ```
 
-## The numbers
+Open http://localhost:8000. The method, figures, results table, downloads, and
+citation remain available without JavaScript. JavaScript enables the physical
+metric selector and citation copying.
 
-The evaluation table is written out in `index.html`. It comes from the frozen
-bundle `data/eval_20260830` in `~/Projects/tossing-results`, which is not going to
-change; if it ever does, print the current values and edit the two rows by hand:
+## Content and results
 
-```bash
-cd ~/Projects/tossing-results && ./run -m analysis.stats
-```
+The page follows the two-stage learning method: geometric pretraining, simulated
+toss-outcome refinement, and fixed grasp-policy deployment with ballistic motion
+planning. The physical release-speed correction is calibrated on the robot and
+held fixed during evaluation.
 
-## Still missing
+Results follow the current manuscript, Tables I and II, and Chapter 4 of the
+thesis. The physical counts were independently checked against all 826 trials
+in recording session `15de8ee141fb` in the experiment repository:
 
-- Figures in `static/images/`.
-- Link to the code, once it is public.
+| Split | Grasp | Target entry after grasp | Full task |
+|---|---|---|---|
+| Seen | 400/410 = 97.56% | 349/400 = 87.25% | 349/410 = 85.12% |
+| Unseen | 400/416 = 96.15% | 306/400 = 76.50% | 306/416 = 73.56% |
 
-## The video
+Simulation full-task success is 66.8% after geometric pretraining and 94.1%
+after refinement (U-Net with 32 orientations; 1,720 attempts per model).
+`static/data/results.json` preserves the source and numerical snapshot. If the
+results change, update that snapshot, the static HTML, and `static/js/index.js`
+together. Do not use the older August evaluation bundle for these results.
 
-`static/videos/reel.mp4` is the English reel, transcoded for the web from
-`~/Projects/tossing-results` (35 MB -> 11 MB). Render the master with the two
-flags off before transcoding:
+Success means entry into the assigned target bin, including entry followed by a
+bounce out; a toss that first enters a different bin is a miss. Unseen parts are
+the four held-out shapes, not arbitrary objects. All eight parts are rectilinear,
+with one physical instance per shape.
 
-```bash
-# in ~/Projects/tossing-results
-./run video/render_reel.py --idioma en --sin-marca --sin-musica \
-     --salida outputs/video/reel.en.publicar.mp4
+## Images
 
-ffmpeg -i reel.en.publicar.mp4 -c:v libx264 -preset slow -crf 26 \
-       -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart \
-       static/videos/reel.mp4
-```
+All research assets come from `../tossing-results/`. No new imagery was generated
+for the website redesign.
 
-`--sin-marca` drops the render date burned in the corner, which is there to tell
-local cuts apart and has no business being published. `--sin-musica` drops the
-music bed: the bed is CC BY and would oblige us to carry the credit on this page
-and anywhere the video goes, so the published cut ships without it. Both stay on
-by default for local review.
+| Web asset in `static/images/research/` | Source |
+|---|---|
+| `system-overview.svg` | `documents/paper/figures/system-overview.pdf` |
+| `training-geometric.svg`, `training-refinement.svg` | Viewport crops of the same vector system diagram, used on mobile; cross-panel arrow omitted at the cropped edges |
+| `setup.webp` | `documents/paper/figures/setup-annotated.pdf` |
+| `parts.webp` | `documents/paper/figures/evaluation-parts-photo.pdf` |
+| `grasp-maps.webp` | `documents/paper/figures/grasp-maps.pdf` |
+| `gripper.webp` | `data/photos/efector_regla.jpeg` |
 
-`+faststart` matters: without it the browser has to fetch the whole file before
-it can start playing. It has narration, so it plays with controls and sound and
-does not autoplay. If a future cut goes much past ~25 MB, host it on YouTube and
-embed it instead of committing the file.
+SVG exports use `pdftocairo -svg`; photographic/score-map figures use
+`pdftoppm -scale-to 1400 -singlefile -png` followed by ImageMagick WebP conversion.
+The setup figure uses 1600 pixels. Score values, masks, and geometry are preserved.
+See the paper figure README for detailed provenance. The setup photograph has a
+blurred room background, as disclosed in the page caption. The system diagram
+contains schematic scenes and trajectories. Grasp-map colors are independently
+normalized, and the page explains the high-score-area metric.
 
-## The paper and thesis
+The Cinvestav logo and identity palette are retained: official green #009383,
+secondary blue #005179, and the institution's name, Center for Research and
+Advanced Studies. The website uses system fonts and a serif heading stack.
 
-The page offers the paper first, clearly marked as a draft, followed by the full
-Spanish thesis. Both have first-page previews and separate read/download links.
+## Video
 
-Published PDF snapshots come from `~/Projects/tossing-results`:
+The existing `static/videos/reel.mp4` remains unchanged. This English project
+reel documents an earlier evaluation; the page explicitly distinguishes it from
+the current paper/thesis results. Video revisions are a separate task.
 
-- `documents/paper/root.pdf` → `static/pdfs/paper-draft.pdf` (English, 6 pages).
-- `documents/tesis/Tesis.pdf` → `static/pdfs/thesis.pdf` (Spanish, 96 pages).
+The existing master is
+`../tossing-results/outputs/video/reel.en.publicar.mp4`. It has narration and no
+music bed. No new YouTube embed or upload has been configured.
 
-To refresh the downloads from this repository:
+## Downloads and citation
 
-```bash
-cp ../tossing-results/documents/paper/root.pdf static/pdfs/paper-draft.pdf
-cp ../tossing-results/documents/tesis/Tesis.pdf static/pdfs/thesis.pdf
-pdftoppm -f 1 -l 1 -scale-to-x 620 -scale-to-y -1 -singlefile -jpeg \
-  -jpegopt quality=88 static/pdfs/paper-draft.pdf static/images/paper-cover
-pdftoppm -f 1 -l 1 -scale-to-x 620 -scale-to-y -1 -singlefile -jpeg \
-  -jpegopt quality=88 static/pdfs/thesis.pdf static/images/thesis-cover
-```
+- `static/pdfs/paper-draft.pdf`: snapshot of `documents/paper/root.pdf`, English,
+  six pages, clearly labeled as a working draft.
+- `static/pdfs/thesis.pdf`: snapshot of `documents/tesis/Tesis.pdf`, Spanish,
+  96 pages.
 
-Update the page counts and file sizes in `index.html` when replacing either PDF.
+Cover images are first-page previews. BibTeX uses the thesis's actual Spanish
+title. The original results excerpt and cover remain at their existing paths
+for previously shared links, but the page now offers the full documents.
 
-## Archived results excerpt
-
-The original excerpt remains available at its existing URL; the page now links
-to the complete documents instead.
-
-`static/pdfs/chapter4-results.pdf` is chapter 4 of the thesis, pulled out of the
-built `Tesis.pdf` in `~/Projects/tesis-tossing`. Chapter 4 is printed pages
-11-26, which are PDF pages 29-44 -- the front matter is numbered in roman, so
-the offset is 18 and it has to be rechecked whenever the front matter grows:
-
-```bash
-qpdf --empty --pages Tesis.pdf 29-44 -- static/pdfs/chapter4-results.pdf
-pdftoppm -r 150 -png -f 1 -l 1 -singlefile static/pdfs/chapter4-results.pdf p1
-magick p1.png -resize 620x -quality 88 static/images/chapter4-cover.jpg
-```
-
-The cover image is the first page, and the page shows that instead of embedding
-a PDF viewer: an `<object>` viewer puts a scrollbar inside a scrollbar and every
-browser paints it differently, while an image looks the same everywhere and
-whoever wants to read opens the file.
-
-It is a draft in Spanish, and the page says so.
-
-## Institutional identity
-
-The page follows the Cinvestav graphic identity manual (Departamento de Difusion,
-2022). What it constrains here:
-
-- **The name.** Only three forms are permitted, and the manual says so in those
-  words: "Ninguna otra variacion del nombre es permitida". They are `Cinvestav`,
-  `Centro de Investigacion y de Estudios Avanzados del Instituto Politecnico
-  Nacional`, and `Center for Research and Advanced Studies`. The English form
-  stops at *Studies* -- the polytechnic tail exists only in Spanish, and never
-  abbreviated to IPN. The acronym is never set in capitals. Credits run
-  dependency, centre, postal address, and the unit is written `Campus Saltillo`.
-- **The mark.** `static/images/logo-cinvestav-saltillo.png` is SAL5 from the
-  official Saltillo pack that Difusion publishes at
-  <https://difusion.cinvestav.mx/Funciones/Identidad-grafica>. It must not be
-  redrawn, recoloured or recreated. The bare symbol without the word Cinvestav
-  is ornamental only and may not stand in for the logosimbolo.
-- **The palette.** `--link` is Pantone 7693 C (#005179) and `--marca` is the
-  Centre's own Pantone 3285 C (#009383). The blue the template shipped with,
-  #3273dc, was Bulma's and is not in the palette. #387FC2 is the colour the
-  manual assigns to Saltillo for web headers.
-- **The type.** Gotham for titles and Calibri for documents. Both are licensed
-  and cannot be served from a web page, so the stack asks for them by name, then
-  Carlito (metrically compatible with Calibri), then the system font.
-
-## Publish (GitHub Pages)
-
-Already a git repo. To put it online:
-
-```bash
-gh auth login                                    # once
-gh repo create tossing-page --public --source . --push
-gh api -X POST repos/:owner/tossing-page/pages \
-  -f 'source[branch]=main' -f 'source[path]=/'
-```
-
-Or, in the web UI: **Settings → Pages → Deploy from a branch → `main` → `/ (root)`**.
-
-The URL is then `https://<user>.github.io/tossing-page/`. `.nojekyll` is committed
-so GitHub serves the files as they are.
+The previous design was adapted from the Academic Project Page Template and
+Nerfies. The current layout and stylesheet were rebuilt for this research story.

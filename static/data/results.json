@@ -1,0 +1,29 @@
+{
+  "source": "Current paper, Tables I and II; thesis, Chapter 4",
+  "physical_session": "15de8ee141fb",
+  "physical": {
+    "seen": {
+      "attempts": 410,
+      "grasps": 400,
+      "hits": 349
+    },
+    "unseen": {
+      "attempts": 416,
+      "grasps": 400,
+      "hits": 306
+    }
+  },
+  "simulation": {
+    "attempts_per_model": 1720,
+    "geometric_only": {
+      "grasp": 96.4,
+      "toss": 69.3,
+      "full": 66.8
+    },
+    "refined_unet32": {
+      "grasp": 98.1,
+      "toss": 95.9,
+      "full": 94.1
+    }
+  }
+}
